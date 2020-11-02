@@ -1,5 +1,5 @@
-# 【面试总结】
-
+# 面试总结
+[[toc]]
 ## 职位描述(JD)
 不同的JD需要匹配不同的技能。写出不同的简历。通过JD着重去准备某部分东西
 
@@ -382,9 +382,9 @@ var obj4=Object.create(P)// Object {}，看不到属性，但是存在。因为�
 
 ```
 ### 原型、构造函数、实例、原型链
-![prototype](/img/prototype.png)
+<!-- ![prototype](/img/prototype.png) -->
 ### instanceof的原理
-![prototype](/img/instanceOf.png)
+<!-- ![prototype](/img/instanceOf.png) -->
 - instanceof判断是否是实例，在原型链上的都会是true，而用constructor只有在本身上才是true，更加严谨
 ### new运算符
 - 创建一个新对象。它继承自foo.prototype
@@ -666,7 +666,7 @@ Child5.prototype.constructor=Child5;// 覆盖自雷的原型对象
 
 ## 算法
 
-<img :src="$withBase('/img/算法.png')" >
+<!-- <img :src="$withBase('/img/算法.png')" > -->
 
 `<mark-box>`
 
@@ -675,7 +675,7 @@ Child5.prototype.constructor=Child5;// 覆盖自雷的原型对象
         - 先从数列中取出一个数作为“基准”。
         - 分区过程：将比这个“基准”大的数全放到“基准”的右边，小于或等于“基准”的数全放到“基准”的左边。
         - 再对左右区间重复第二步，直到各区间只有一个数。
-        - <img :src="$withBase('/img/快速排序.gif')">
+        <!-- - <img :src="$withBase('/img/快速排序.gif')"> -->
 ```js
 var quickSort = function(arr) {
     if (arr.length <= 1) { return arr; }
@@ -697,7 +697,7 @@ var quickSort = function(arr) {
     - 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置。
     - 再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。
     - 重复第二步，直到所有元素均排序完毕。
-    - <img :src="$withBase('/img/selectionSort.gif')">
+    <!-- - <img :src="$withBase('/img/selectionSort.gif')"> -->
 ```js
 function selectionSort(arr) {
     var len = arr.length;
@@ -722,8 +722,8 @@ function selectionSort(arr) {
     - 从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置。（如果待插入的元素与有序序列中的某个元素相等，则将待插入元素插入到相等元素的后面。）
 - 希尔排序
     - 希尔排序的基本思想是：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录基本有序时，再对全体记录进行依次直接插入排序。
-    - <img :src="$withBase('/img/xiersort.jpeg')">
-    - <img :src="$withBase('/img/xiersort2.gif')">
+    <!-- - <img :src="$withBase('/img/xiersort.jpeg')"> -->
+    <!-- - <img :src="$withBase('/img/xiersort2.gif')"> -->
 
 ```js
 function shellSort(arr) {
@@ -753,7 +753,7 @@ function shellSort(arr) {
     -  对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。这步做完后，最后的元素会是最大的数。
     - 针对所有的元素重复以上的步骤，除了最后一个。
     - 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较
-    - <img :src="$withBase('/img/bubbleSort.gif')">
+    <!-- - <img :src="$withBase('/img/bubbleSort.gif')"> -->
 ```js
 function bubbleSort(arr) {
     var len = arr.length;
@@ -920,7 +920,7 @@ for(var i=0;i<4;i++){
 ```
 【面试题延伸】跨域的js运行错误可以捕获吗，错误提示什么，应该怎么处理？
 - 错误提示：因为跨域了，所以拿不到错误信息。
-    - <img :src="$withBase('/img/跨域错误捕获.jpg')">
+    <!-- - <img :src="$withBase('/img/跨域错误捕获.jpg')"> -->
 - 如何处理才能拿到详细信息（两步）：
     1. （前端）在script标签增加crossorigin属性
     2. （后端）设置js资源响应头Access-Control-Allow-Origin:*// *也可以改成具体域名
@@ -955,7 +955,7 @@ for(var i=0;i<4;i++){
 - 页面到数据的更新-->内置了input事件（以前需要自己写input事件）
 
 - 使用了什么设计模式？
-<img :src="$withBase('/img/MVVM设计模式.png')">
+<!-- <img :src="$withBase('/img/MVVM设计模式.png')"> -->
 
 - 观察者设计模式的原理要了如指掌
     - 模式分为几大主体(Observer,Dep,Watcher),角色，作用
