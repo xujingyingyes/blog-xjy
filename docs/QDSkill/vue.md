@@ -323,7 +323,8 @@ Vue.config.keyCodes={
 - 绑定属性
 
 > 动态绑定样式 
-**class**
+
+**class** 
 1. 等于对象
 
 ```html
@@ -334,7 +335,7 @@ Vue.config.keyCodes={
 <div class="abc" :class="['a','b',c]">你好</div>//c为data中定义的
 ```
 
-**style**
+**style** 
 等于对象或者数组
 ```html
 <div style='color:red' :style="{background:'blue'}"></div>
@@ -343,12 +344,15 @@ Vue.config.keyCodes={
 
   * `<highlight-box>v-model</highlight-box>`
   * `input`
-   ```html
-   <input type='text' :value="msg" @input="e=>{msg=e.target.value}"/>
-   等价于  <!-- v-model 是 @input + :value 的一个语法糖-->
-   <input type='text' v-model="msg"/>
-   ```
+
+```html
+<input type='text' :value="msg" @input="e=>{msg=e.target.value}"/>
+等价于  <!-- v-model 是 @input + :value 的一个语法糖-->
+<input type='text' v-model="msg"/>
+```
+
   * `model属性自定义model`
+
 ```js
 {
   model:{
