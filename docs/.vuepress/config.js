@@ -33,13 +33,21 @@ module.exports = {
                     {
                         text: '性能优化',
                         link: '/performanceOptimization/'
+                    },
+                    {
+                        text: '浏览器渲染',
+                        link: '/browserRendering/'
                     }
                 ]
             },
             {
-                text: '每日三道题',
-                link: '/dayThreeCode/'
+                text: '博客',
+                link: 'https://github.com/xujingyingyes/xujingyingyes.github.io'
             },
+            // {
+            //     text: '每日三道题',
+            //     link: '/dayThreeCode/'
+            // },
             {
                 text: '面经',
                 link: '/faceStorage/'
@@ -63,6 +71,10 @@ module.exports = {
                     "viewskills",
                     "vueSource",
                     "reactSource",
+                    "axios",
+                    "promise",
+                    // "express",
+                    "什么是Event Loop",
                     "js/前端设计模式",
                     "js/js基础",
                     "js/jsWebAPI",
@@ -81,7 +93,7 @@ module.exports = {
                 children: [
                     "egg",
                     "小程序",
-                    "TypeScript 的优点",
+                    "TypeScript",
                     "Virtual DOM",
                     "Vue和React的区别",
                     "AST"
@@ -123,16 +135,73 @@ module.exports = {
                     'webpack 性能优化'
                 ]
             }],
-            // 每天三道题
-            '/dayThreeCode/': [
-                "05-13",
-            ],
+            // 浏览器渲染
+            '/browserRendering/': [{
+                title: '浏览器渲染',
+                children: [
+                    "浏览器输入URL的全过程",
+                    "渲染机制",
+                    "重排重绘",
+                    "Chrome浏览器进程",
+                ]
+            }],
+            // // 每天三道题
+            // '/dayThreeCode/': [
+            //     "05-13",
+            // ],
             // 面经
             '/faceStorage/': [{
                 title: "面经",
                 children: [
                     "2020年4月份面经",
-                    "小程序面试准备"
+                    "2020年10月份面经",
+                    "小程序面试准备",
+                    "真题/综合面试题",
+                    "真题/51信用卡",
+                    "真题/2020年中大厂面试总结",
+                    "真题/阿里、美团、头条",
+                    "真题/阿里",
+                    "真题/阿里（部门未知）",
+                    "真题/阿里企业智能事业部",
+                    "真题/阿里CBU（亲身经历）",
+                    "真题/阿里CBU技术部",
+                    "真题/百度（安全平台）",
+                    "真题/滴滴",
+                    "真题/富途证券（架构组）",
+                    "真题/广州跨境电商",
+                    "真题/广州引力波",
+                    "真题/欢聚时代（总部）",
+                    "真题/金山wps",
+                    "真题/金山软件",
+                    "真题/头条-经典题型",
+                    "真题/科创先锋",
+                    "真题/酷家乐、拼多多",
+                    "真题/霖呆呆",
+                    "真题/明源云",
+                    "真题/木易杨-前端100问",
+                    "真题/平行空间",
+                    "真题/顺德美云智数",
+                    "真题/腾讯（部门未知）",
+                    "真题/腾讯（小鹅拼拼）",
+                    "真题/腾讯（IMWeb）",
+                    "真题/腾讯面试四问",
+                    "真题/腾讯微视（桌面工程师方向）",
+                    "真题/头条、滴滴面试真题",
+                    "真题/头条、微信、shopee",
+                    "真题/兔展",
+                    "真题/虾皮（toC group）",
+                    "真题/铱云科技",
+                    "真题/有赞",
+                    "真题/有赞（有赞美业）",
+                    "真题/招创礼记",
+                    "真题/中信银行信用卡中心",
+                    "真题/字节跳动、虾皮、快手、拼多多",
+                    "真题/字节跳动",
+                    "真题/字节跳动（EA）",
+                    "真题/字节跳动（Lark）",
+                    "真题/cvte",
+                    "真题/shopee_金融部门",
+                    "真题/shopee、腾讯、字节面经",
                 ]
             }],
             // 算法

@@ -1,5 +1,6 @@
+# Vue和React的区别
+[[toc]]
 # 从原理上说
-
 Vue 的数据绑定依赖数据劫持 `Object.defineProperty()` 中的 `getter` 和 `setter`，更新视图使用的是 **发布订阅模式（eventEmitter）** 来监听值的变化，从而让 `virtual DOM` 驱动 Model 和 View 的更新，利用 `v-model` 这一语法糖能够轻易实现双向的数据绑定，这种模式被称为 `MVVM: M <=> VM <=> V`，但本质上还是 `State -> View -> Actions` 的单向数据流，只是使用了 `v-model` 不需要显式地编写 `View` 到 `Model` 的更新。
 
 React 则需要依赖 `onChange/setState` 模式来实现数据的双向绑定，因为它在诞生之初就是设计成单向数据流的。

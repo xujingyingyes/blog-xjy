@@ -85,7 +85,7 @@ webpack 打包时，会从配置的 entry 出发，解析入口文件的导入�
 
 5.  **优化 resolve.mainFields 配置**
 
-    有一些第三方模块会针对不同环境提供几分代码，路径一般会写在 package.json 中。
+    有一些第三方模块会针对不同环境提供几份代码，路径一般会写在 package.json 中。
 
     webpack 会根据 mainFields 中配置去决定优先采用哪份代码，只会使用找到的第一个。
 

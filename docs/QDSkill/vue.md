@@ -323,8 +323,9 @@ Vue.config.keyCodes={
 - 绑定属性
 
 > 动态绑定样式 
-class
+**class**
 1. 等于对象
+
 ```html
 <div class="abc" :class="{b:true}">你好</div>
 ```
@@ -332,21 +333,22 @@ class
 ```html
 <div class="abc" :class="['a','b',c]">你好</div>//c为data中定义的
 ```
-style
+
+**style**
 等于对象或者数组
 ```html
-<div style='color:red' :style="{background:'blue'}">
-<div style='color:red' :style="[{background:'red',color:'blue'}]">
+<div style='color:red' :style="{background:'blue'}"></div>
+<div style='color:red' :style="[{background:'red',color:'blue'}]"></div>
 ```
 
-* `<highlight-box>v-model</highlight-box>`
-* `input`
+  * `<highlight-box>v-model</highlight-box>`
+  * `input`
    ```html
    <input type='text' :value="msg" @input="e=>{msg=e.target.value}"/>
    等价于  <!-- v-model 是 @input + :value 的一个语法糖-->
    <input type='text' v-model="msg"/>
    ```
-* `model属性自定义model`
+  * `model属性自定义model`
 ```js
 {
   model:{
@@ -355,7 +357,8 @@ style
   }
 }
 ```
-* `.sync`绑定
+
+  * `.sync`绑定
 ```vue
 <template>
   <Son1 :money="mny" @update:money="val=>mny=val"></Son1>
@@ -363,16 +366,17 @@ style
   <Son1 :money.sync="mny"></Son1>
 </template>
 ```
-* `select,radio`和`checkbox`
-```js
+
+  * `select,radio`和`checkbox`
+```html
 //select
 data:{
-selectValue:'',
-list:['{value:'菜单1',id:1}','{value:'菜单2',id:2}','{value:'菜单3',id:3}']
+  selectValue:'',
+  list:['{value:'菜单1',id:1}','{value:'菜单2',id:2}','{value:'菜单3',id:3}']
 }
 <select v-model="selectValue">
-<option value="0" disabled>请选择</option>
-<option v-for="item in list" :key="item.id" :value="item.id">{{item.value}}</option>
+  <option value="0" disabled>请选择</option>
+  <option v-for="item in list" :key="item.id" :value="item.id">{{item.value}}</option>
 </select>
 //select属性multiple多选，太丑一般不用
 
@@ -404,8 +408,8 @@ data:{
 
 #### 修饰符（可以连续修饰）
 ```html
-  <input type="text" v-model.number="val">{{typeof val}}//只能数字
-  <input type="text" v-model.trim="val">{{typeof val}}//清除空格
+  <input type="text" v-model.number="val">{{typeof val}}  //只能数字
+  <input type="text" v-model.trim="val">{{typeof val}}    //清除空格
 ```
 
 * `<highlight-box>v-slot</highlight-box>`

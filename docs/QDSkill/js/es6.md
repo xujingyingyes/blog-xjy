@@ -119,6 +119,67 @@ let b = 1;
 window.b // undefined
 ```
 
+## 数组的降维 --11.10
+
+数组的成员有时还是数组，Array.prototype.flat()用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。
+
+```js
+[1, 2, [3, 4]].flat()
+// [1, 2, 3, 4]
+```
+
+上面代码中，原数组的成员里面有一个数组，flat()方法将子数组的成员取出来，添加在原来的位置。
+
+flat()默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将flat()方法的参数写成一个整数，表示想要拉平的层数，默认为1。
+```js
+[1, 2, [3, [4, 5]]].flat()
+// [1, 2, 3, [4, 5]]
+
+[1, 2, [3, [4, 5]]].flat(2)
+// [1, 2, 3, 4, 5]
+```
+
+上面代码中，flat()的参数为2，表示要“拉平”两层的嵌套数组。
+
+如果不管有多少层嵌套，都要转成一维数组，可以用Infinity关键字作为参数。
+
+```js
+[1, [2, [3]]].flat(Infinity)
+// [1, 2, 3]
+```
+
+如果原数组有空位，flat()方法会跳过空位。
+
+```js
+[1, 2, , 4, 5].flat()
+// [1, 2, 4, 5]
+```
+flatMap()方法对原数组的每个成员执行一个函数（相当于执行Array.prototype.map()），然后对返回值组成的数组执行flat()方法。该方法返回一个新数组，不改变原数组。
+
+```js
+// 相当于 [[2, 4], [3, 6], [4, 8]].flat()
+[2, 3, 4].flatMap((x) => [x, x * 2])
+// [2, 4, 3, 6, 4, 8]
+```
+
+flatMap()只能展开一层数组。
+
+```js
+// 相当于 [[[2]], [[4]], [[6]], [[8]]].flat()
+[1, 2, 3, 4].flatMap(x => [[x * 2]])
+// [[2], [4], [6], [8]]
+```
+上面代码中，遍历函数返回的是一个双层的数组，但是默认只能展开一层，因此flatMap()返回的还是一个嵌套数组。
+
+flatMap()方法的参数是一个遍历函数，该函数可以接受三个参数，分别是当前数组成员、当前数组成员的位置（从零开始）、原数组。
+```js
+arr.flatMap(function callback(currentValue[, index[, array]]) {
+  // ...
+}[, thisArg])
+```
+flatMap()方法还可以有第二个参数，用来绑定遍历函数里面的this。
+
+
 ### globalThis对象
 - 顶层对象（提供全局作用域）
   - 浏览器里面，顶层对象是window，但 Node 和 Web Worker 没有window。
@@ -252,6 +313,248 @@ move({x: 3}); // [3, 0]
 move({}); // [0, 0]
 move(); // [0, 0]
 ```
+
+## 数组的处理方法(包含es6和es5)--11.10
+
+[还可以参考这里](https://www.jianshu.com/p/e1b43e56de08)
+1. find()只返回第一个满足条件的(元素)
+```js
+const myArr = [1, 2, 3, 4, 5, 6];
+    var v = myArr.find((item, itemindex, arr) => {
+      return itemindex > 2;
+      });
+// console.log(v); //4
+```
+
+2. findIndex只是当条件为true时findIndex()返回的是索引值index 如果没有符合条件元素时findIndex()返回的是-1
+```js
+ var i = bookArr.findIndex((value) => value.id == 4);
+// console.log(i); // 3
+var i2 = bookArr.findIndex((value) => value.id == 100);
+ // console.log(i2); // -1
+ 
+ //eg：
+ let objcart = {
+      id: 1,
+      SkuId: 10,
+      Qty: 1,
+  };
+ let userArr = [
+      { id: 1, SkuId: 10, Qty: 1 },
+      { id: 2, SkuId: 10, Qty: 1 },
+      { id: 3, SkuId: 10, Qty: 1 },
+  ];
+  let content = userArr.findIndex(
+      (item) => item.id == objcart.id && item.SkuId == objcart.SkuId
+  );
+  if (content === -1) {
+      userArr.push(objcart);
+ } else {
+      userArr[content].Qty += 1;
+ }
+ console.log(userArr,"userArr")        
+```
+
+3. filter()返回的是数组，数组内是所有满足条件的元素 如果条件不满足，filter()返回的是一个空数组
+```js
+ var arr = [
+      { id: 1, userName: "laozhang" },
+      { id: 2, userName: "laowang" },
+      { id: 3, userName: "laoliu" },
+    ];
+    // console.log(arr.filter(item=>item.id>1));
+    //[ { id: 2, userName: 'laowang' },{ id: 3, userName: 'laoliu' } ]  
+```
+
+4. forEach 循环数组
+```js
+var myArrTow = [1, 3, 4, 5, 6, 3, 7, 4];
+    var numTow = 0;
+    myArrTow.forEach((item) => {
+      numTow += item;
+ });
+ // console.log(numTow, "numTow");    33
+```
+
+5. map 通过指定函数处理数组的每个元素，并返回处理后的数组。(或者给后台接口加上自己的字段)
+```js
+let numbers = [1,2,3,4,5];
+let newnumbers=numbers.map(num => {
+    return num*2;
+});
+console.log(newnumbers);
+//[2, 4, 6, 8, 10]
+
+let arrmap = [
+      {
+        id: 113,
+        shopName: "a旗舰店",
+        sclist: [
+          { goodsId: 491, skuId: 2162, qty: 26, price: 5 },
+          { goodsId: 496, skuId: 2294, qty: 6, price: 10 },
+        ],
+      },
+      {
+        id: 114,
+        shopName: "b旗舰店",
+        sclist: [
+          { goodsId: 491, skuId: 2162, qty: 26, price: 5 },
+          { goodsId: 496, skuId: 2294, qty: 6, price: 10 },
+        ],
+      },
+      {
+        id: 115,
+        shopName: "c旗舰店",
+        sclist: [
+          { goodsId: 491, skuId: 2162, qty: 26, price: 5 },
+          { goodsId: 496, skuId: 2294, qty: 6, price: 10 },
+        ],
+      },
+      {
+        id: 116,
+        shopName: "d旗舰店",
+        sclist: [
+          { goodsId: 491, skuId: 2162, qty: 26, price: 5 },
+          { goodsId: 496, skuId: 2294, qty: 6, price: 10 },
+        ],
+      },
+    ];
+    let arrmapTow = [];
+
+    arrmapTow = arrmap.map((item) => {
+      return Object.assign({}, item, {
+        allChecked: false,
+      });
+    });
+    console.log(arrmapTow, "arrmapTow"); //对一层数组做处理
+
+    let arrmapThree = [];
+    arrmapThree = arrmap.map((item) => {
+      return {
+        id: item.id,
+        shopName: item.shopName,
+        allChecked: false,
+        sclist: item.sclist.map((itemA) => {
+          return Object.assign({}, itemA, {
+            endTime: 0,
+          });
+        }),
+      };
+    });
+
+    console.log(arrmapThree, "arrmapThree");//对二层数组做处理
+```
+
+6. new Set()它类似于数组，但是成员的值都是唯一的，没有重复的值。
+```js
+//去重复
+ function dedupe(array) {
+      return Array.from(new Set(array));
+   }
+ // console.log( dedupe([1,1,2,3]))//[1,2,3]
+  
+  
+//多数组的合并去重
+let arrset1 = [1, 2, 3, 4]
+let arrset2 = [2, 3, 4, 5, 6]
+let set7 = new Set([...arrset1, ...arrset2])
+console.log(set7)//Set(6) {1, 2, 3, 4, 5,6}
+```
+
+7. join() 把数组的所有元素放入一个字符串。
+```js
+   var aa = ["aa", "bb"];
+   console.log(aa.join(','))    //aa,bb
+```
+
+8. split() 用于把一个字符串分割成字符串数组
+```js
+    var bb = "aa,bb";
+    console.log(bb.split(","))  // ["aa", "bb"]
+```
+
+9. push 向数组的末尾添加一个或更多元素，并返回新的长度。
+```js
+    let numbers = [1,2,3,4,5,6,7,8,9,10];
+	numbers.push(100);
+	console.log(numbers);//  [1,2,3,4,5,6,7,8,9,10,100]
+```
+
+10. unshift 向数组的开头添加一个或更多元素，并返回新的长度
+```js
+    let numbers = [1,2,3,4,5,6,7,8,9,10];
+	numbers.unshift(100);
+	console.log(numbers);//  [100,1,2,3,4,5,6,7,8,9,10]
+```
+
+11. pop 删除数组的最后一个元素并返回删除的元素。
+```js
+	let numbers = [1,2,3,4,5,6,7,8,9,10];
+	numbers.pop();
+	console.log(numbers);//  [1,2,3,4,5,6,7,8,9]
+```
+
+12. shift 删除并返回数组的第一个元素
+```js
+    let numbers = [1,2,3,4,5,6,7,8,9,10];
+	numbers.shift();
+	console.log(numbers);//  [2,3,4,5,6,7,8,9,10]
+```
+
+13. reverse 反转数组的元素顺序。
+```js
+   let numbers = [1,2,3,4,5,6,7,8,9,10];
+	numbers.reverse ();
+	console.log(numbers);//[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+```
+
+14. slice 选取数组的的一部分，并返回一个新数组。
+
+```js
+ var arrslice=['George','John','Thomas']
+
+  console.log(arrslice.slice(1)) // ["John", "Thomas"] 
+```
+
+15. splice 从数组中添加或删除元素。
+```js
+  var arrslice=['George','John','Thomas']
+ console.log(arrslice.splice (1,2)) // ["John", "Thomas"]
+```
+
+16. indexOf 搜索数组中的元素，并返回它所在的位置。
+```js
+   let numbers = [1,2,3,4,5];	
+    result = numbers.indexOf(3);
+	console.log(result)  //2   下标为2
+```
+
+17. sort 数组排序
+```js
+  	let numbers = [2,3,1,4,5];
+	result = numbers.sort();
+	console.log(result)
+	//1,2,3,4,5 
+```
+
+18. isArray 判断对象是否为数组。
+
+```js
+ let numbers = [1,2,3,4,5];
+	result = Array.isArray(numbers);
+	console.log(result)
+	//true  是数组
+```
+
+19. includes 判断一个数组是否包含一个指定的值
+
+```js
+	let numbers = [1,2,3,4,5];
+	result = numbers.includes(3);
+	console.log(result)
+	//true  存在
+```
+
 ### 圆括号问题
 - 变量声明语句，不能使用圆括号。
 - 函数参数也属于变量声明，不能带有圆括号。
@@ -2314,6 +2617,16 @@ const myModual = require(path);
 - 所有配置项都应该集中在一个对象，放在最后一个参数，布尔值不可以直接作为参数。
 - 不要在函数体内使用 arguments 变量，使用 rest 运算符（...）代替。
 - 使用默认值语法设置函数参数的默认值。
+
+箭头函数和普通函数的区别：--11.10
+[传送门](https://www.cnblogs.com/biubiuxixiya/p/8610594.html)
+**这些都是箭头函数的一些 `不能`**
+1. 不能作为构造函数
+2. 不能使用new
+3. 不绑定arguments
+4. 不绑定this
+5. 没有原型属性 
+6. 不能当做Generator函数,不能使用yield关键字
 
 ### Map结构
 - 区分 Object 和 Map，只有模拟现实世界的实体对象时，才使用 Object。如果只是需要key: value的数据结构，使用 Map 结构。因为 Map 有内建的遍历机制。

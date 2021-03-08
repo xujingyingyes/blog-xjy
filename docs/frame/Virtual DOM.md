@@ -1,5 +1,5 @@
 # Virtual DOM 原理
-
+[[toc]]
 1.  利用 JavaScript 创建 DOM 树
 2.  树的 diff，同层对比，输出 patchs(listDiff / diffChildren / diffProps)
     1.  没有新的节点，返回
